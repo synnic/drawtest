@@ -17,6 +17,10 @@
                 <li>
                         <button id="saveAs">Save</button>
                     </li>
+                    <form action="/pupload" method="post" enctype="multipart/form-data">
+                        <input type="file" name="file">
+                        <input type="submit" value="Upload Image" name="submit">
+                      </form>
                 <li>
                     <button id="clear"><i class="fa fa-trash"></i></button>
                 </li>
@@ -24,6 +28,7 @@
             </ul>
         </div>
     <script src=index.js></script>
+    <!-- <script src=upload.js></script> -->
     <script src=p5/p5.js></script>
 </body>
 </html>
