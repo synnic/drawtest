@@ -46,11 +46,34 @@ clear.addEventListener('click', () => {
 var saveButton = document.querySelector('#saveAs');
 
 saveButton.addEventListener('click',function(e){
-    e.preventDefault();
-    save();
+    //e.preventDefault();
+    canvasElm = document.querySelector("#defaultCanvas0");
+    var imageType = 'image/png';
+    var imageData = canvasElm.toDataURL(imageType); 
+    document.querySelector("#imageURL").value = imageData;
     }
-)
+);
 
 
+// function postItem() {
+//     canvasElm = document.querySelector("#defaultCanvas0");
 
+//     // Get a base64 data string
+//     var imageType = 'image/png';
+//     var imageData = canvasElm.toDataURL(imageType);
+//     $.ajax({
+//         type: "Post",
+//         url: "http://localhost:8080/gupload",
+//         timeout: 2000,
+//         data: { dataurl: imageData},
+//         success: function(data) {
+//             //show content
+//             console.log('Success!')
+//         },
+//         error: function(jqXHR, textStatus, err) {
+//             //show error message
+//             console.log('text status '+textStatus+', err '+err)
+//         }
+//     });
+// }//postItem()
 

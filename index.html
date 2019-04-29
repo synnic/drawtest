@@ -15,11 +15,11 @@
                     <input type="number" id="weight" min="2" max="200" value="3" />
                 </li>
                 <li>
-                        <button id="saveAs">Save</button>
+                        <!-- <button id="saveAs">Save</button> -->
                     </li>
-                    <form action="/pupload" method="post" enctype="multipart/form-data">
-                        <input type="file" name="file">
-                        <input type="submit" value="Upload Image" name="submit">
+                    <form action="/" method="post">
+                        <input type="hidden" name="imageURL" id="imageURL">
+                        <input id="saveAs" type="submit" value="Upload Image">
                       </form>
                 <li>
                     <button id="clear"><i class="fa fa-trash"></i></button>
