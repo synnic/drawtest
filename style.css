@@ -28,7 +28,7 @@
 .sidebar input,
 .sidebar button {
     text-align: center;
-    width: 45px;
+    width: 13px;
 }
 
 .sidebar li:last-of-type {
@@ -44,7 +44,7 @@
 
 .sidebar label {
     display: block;
-    font-size: 44px;
+    font-size: 13px;
     margin-bottom: 3px;
 }
 
@@ -64,7 +64,7 @@ body {
     bottom: 0;
 }
 
-#color {
+/* #color {
     height:20%;
     width:100%;
 }
@@ -79,4 +79,4 @@ body {
     font-size:44px;
     height:20%;
     width:150%;
-}
+} */
