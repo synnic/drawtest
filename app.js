@@ -42,12 +42,14 @@ async function checkVision(ImagePublicURL) {
 //   });
   const [objResult] = await client.objectLocalization(ImagePublicURL);
   const objects = objResult.localizedObjectAnnotations;
+  var resultString = '';
   objects.forEach(object => {
-    console.log(`Name: ${object.name}`);
-    console.log(`Confidence: ${object.score}`);
-    const vertices = object.boundingPoly.normalizedVertices;
-    vertices.forEach(v => console.log(`x: ${v.x}, y:${v.y}`));
+    //console.log(`Name: ${object.name}`);
+    //console.log(`Confidence: ${object.score}`);
+    resultString = resultString + `*Name: ${object.name}` + ` Confidence: ${object.score}`;
+    console.log(resultString);
   });
+  return resultString;
 }
 
 
@@ -72,29 +74,29 @@ app.use(bodyParser.urlencoded({
  
  app.use(bodyParser.json());
 
- app.get('/', function(req, res){
-    res.render('form');// if jade
-    // You should use one of line depending on type of frontend you are with
-    res.sendFile(__dirname + '/form.html'); //if html file is root directory
-   res.sendFile("index.html"); //if html file is within public directory
-  });
- 
-// app.get('/', async (req, res) => {
-
-//   console.log(process.env);
-
-//   const [files] = await bucket.getFiles();
-
-//   res.writeHead(200, { 'Content-Type': 'text/html' });
-
-//   files.forEach(file => {
-//     res.write(`<div>* ${file.name}</div>`);
-//     console.log(file.name);
+//  app.get('/', function(req, res){
+//     res.render('form');// if jade
+//     // You should use one of line depending on type of frontend you are with
+//     res.sendFile(__dirname + '/form.html'); //if html file is root directory
+//    res.sendFile("index.html"); //if html file is within public directory
 //   });
+ 
+app.get('/', async (req, res) => {
 
-//   return res.end();
+  console.log(process.env);
 
-// });
+  const [files] = await bucket.getFiles();
+
+  res.writeHead(200, { 'Content-Type': 'text/html' });
+
+  files.forEach(file => {
+    res.write(`<div>* ${file.name}</div>`);
+    console.log(file.name);
+  });
+
+  return res.end();
+
+});
 
 // app.get("/gupload", (req, res) => {
 //   res.sendFile(path.join(`${__dirname}/index.html`));
@@ -108,7 +110,9 @@ app.post("/", function(req, res) {
 //     console.log('File created');
 // });
   // Create a new blob in the bucket and upload the file data.
-  const blob = bucket.file('drawing');
+  var timestamp = new Date();
+  var newName = 'drawing'+timestamp.toISOString().replace(/T/, '').replace(/\..+/, '').replace(/-/,'').replace(/:/,'').replace(/-/,'').replace(/:/,'');
+  const blob = bucket.file(newName);
 
   // Make sure to set the contentType metadata for the browser to be able
   // to render the image instead of downloading the file (default behavior)
@@ -128,8 +132,18 @@ app.post("/", function(req, res) {
 
     // Make the image public to the web (since we'll be displaying it in browser)
     blob.makePublic().then(() => {
-      res.status(200).send(`Success!\n Image uploaded to ${publicUrl}`);
-      checkVision(publicUrl);
+      //res.status(200).send(`Success!\n Image uploaded to ${publicUrl}`);
+    //  res.status(200).redirect('result.html');
+     checkVision(publicUrl).then(x=>{
+        var htmlContent = 
+        `<div>
+            <img src="${publicUrl}" style="width:70%;height:70%"></img>
+        </div>
+        <div>
+            ${x}
+        </div>` ;
+        res.status(200).write(htmlContent);
+     });
     });
   });
 
