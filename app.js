@@ -86,7 +86,7 @@ app.post("/", function(req, res) {
   });
 
   blobStream.on("error", err => {
-    next(err);
+    console.log(err);
     return;
   });
   blobStream.on("finish", () => {
