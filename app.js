@@ -55,7 +55,8 @@ app.use(bodyParser.urlencoded({
 //     res.sendFile(__dirname + '/form.html'); //if html file is root directory
 //    res.sendFile("index.html"); //if html file is within public directory
 //   });
- 
+app.use(express.json({limit: '50mb'}));
+
 app.get('/', async (req, res) => {
 
   console.log(process.env);
