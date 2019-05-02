@@ -22,8 +22,11 @@ const client = new vision.ImageAnnotatorClient(
 
 
 async function checkVision(ImagePublicURL) {
+    console.log('vision api begins');
   const [objResult] = await client.objectLocalization(ImagePublicURL);
+  console.log('await');
   const objects = objResult.localizedObjectAnnotations;
+  console.log('localizedObjectAnnotations');
   var resultString = '';
   objects.forEach(object => {
     //console.log(`Name: ${object.name}`);
@@ -96,6 +99,7 @@ app.post("/", function(req, res) {
 
     // Make the image public to the web (since we'll be displaying it in browser)
     blob.makePublic().then(() => {
+        console.log('Image uploaded');
      checkVision(publicUrl).then(x=>{
         var htmlContent = 
         `<div>
