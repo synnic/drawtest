@@ -100,16 +100,17 @@ app.post("/", function(req, res) {
     // Make the image public to the web (since we'll be displaying it in browser)
     blob.makePublic().then(() => {
         console.log('Image uploaded');
-     checkVision(publicUrl).then(x=>{
-        var htmlContent = 
-        `<div>
-            <img src="${publicUrl}" style="width:70%;height:70%"></img>
-        </div>
-        <div>
-            ${x}
-        </div>` ;
-        res.status(200).write(htmlContent);
-     });
+    //  checkVision(publicUrl).then(x=>{
+    //     var htmlContent = 
+    //     `<div>
+    //         <img src="${publicUrl}" style="width:70%;height:70%"></img>
+    //     </div>
+    //     <div>
+    //         ${x}
+    //     </div>` ;
+    //     res.status(200).write(htmlContent);
+    //  });
+    //123
     });
   });
 
