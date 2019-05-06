@@ -2,11 +2,46 @@ const express = require('express');
 var bodyParser = require('body-parser');
 const { Storage } = require('@google-cloud/storage');
 const vision = require('@google-cloud/vision');
+const automl = require(`@google-cloud/automl`).v1beta1;
 
 const CLOUD_BUCKET = process.env.GCLOUD_STORAGE_BUCKET || 'pigturechallenge.appspot.com';
 const PROJECT_ID = process.env.PROJECT_ID || 'pigturechallenge';
 const KEY_FILE = process.env.GCLOUD_KEY_FILE || 'pigturechallenge-9ae039f98d06.json';
 const PORT = process.env.PORT || 8080;
+
+const computeRegion = `us-central1`;
+const datasetName = `pig`;
+const multiLabel = `false`;
+ 
+async function autoML()
+{
+   // A resource that represents Google Cloud Platform location.
+   const projectLocation = client.locationPath(projectId, computeRegion);
+
+   // Classification type is assigned based on multilabel value.
+   let classificationType = `MULTICLASS`;
+   if (multiLabel) {
+     classificationType = `MULTILABEL`;
+   }
+ 
+   // Specify the text classification type for the dataset.
+   const datasetMetadata = {
+     classificationType: classificationType,
+   };
+ 
+   // Set dataset name and metadata.
+   const myDataset = {
+     displayName: datasetName,
+     imageClassificationDatasetMetadata: datasetMetadata,
+   };
+ 
+   // Create a dataset with the dataset metadata in the region.
+   const [dataset] = await client.createDataset({
+     parent: projectLocation,
+     dataset: myDataset,
+   });
+ 
+}
 var imageTest;
 
 const storage = new Storage({
@@ -18,6 +53,13 @@ const client = new vision.ImageAnnotatorClient(
         projectId: PROJECT_ID,
         keyFilename: KEY_FILE
     }
+);
+
+const autoMLClient = new automl.AutoMlClient(
+  {
+      projectId: PROJECT_ID,
+      keyFilename: KEY_FILE
+  }
 );
 
 
@@ -100,17 +142,20 @@ app.post("/", function(req, res) {
     // Make the image public to the web (since we'll be displaying it in browser)
     blob.makePublic().then(() => {
         console.log('Image uploaded');
-    //  checkVision(publicUrl).then(x=>{
-    //     var htmlContent = 
-    //     `<div>
-    //         <img src="${publicUrl}" style="width:70%;height:70%"></img>
-    //     </div>
-    //     <div>
-    //         ${x}
-    //     </div>` ;
-    //     res.status(200).write(htmlContent);
-    //  });
-    //123
+        console.log('publicUrl');
+     checkVision(publicUrl).then(x=>{
+        var htmlContent = 
+        `<div>
+            <img src="${publicUrl}" style="width:70%;height:70%"></img>
+        </div>
+        <div>
+            ${x}
+        </div>` ;
+        res.status(200).write(htmlContent);
+        res.end();
+     }).catch((error) => {
+      console.error(error);
+    });
     });
   });
 
