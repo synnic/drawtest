@@ -54,7 +54,6 @@ var saveButton = document.querySelector('#saveAs');
 saveButton.addEventListener('click',function(e){
     //e.preventDefault();
     canvasElm = document.querySelector("#defaultCanvas0");
-    canvasElm = trimCanvas(canvasElm);
     var imageType = 'image/png';
     var imageData = canvasElm.toDataURL(imageType); 
     document.querySelector("#imageURL").value = imageData;
