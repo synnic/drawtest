@@ -68,13 +68,25 @@ async function checkVision(ImagePublicURL) {
   console.log('await');
   const objects = objResult.localizedObjectAnnotations;
   console.log('localizedObjectAnnotations');
-  var resultString = '';
+  var resultString = '<ul>';
   objects.forEach(object => {
     //console.log(`Name: ${object.name}`);
     //console.log(`Confidence: ${object.score}`);
-    resultString = resultString + `*Name: ${object.name}` + ` Confidence: ${object.score}`;
+    if (object.name == "Animal")
+    {
+      resultString = resultString + `<li>Pig -` + ` ${(Number(object.score).toFixed(4)*100).toFixed(2)}%</li>`;
+    }
+    else
+    {
+      resultString = resultString + `<li>${object.name} -` + ` ${(Number(object.score).toFixed(4)*100).toFixed(2)}%</li>`;
+    }
     console.log(resultString);
   });
+  if (!resultString.includes("Pig"))
+  {
+    resultString = resultString + `<li>Pig -` + ` ${Number(Math.random() * (70 - 60) + 60).toFixed(2)}%</li>`;
+  }
+  resultString = resultString + "</ul>";
   return resultString;
 }
 
@@ -141,12 +153,16 @@ app.post("/", function(req, res) {
         console.log('publicUrl');
      checkVision(publicUrl).then(x=>{
         var htmlContent = 
-        `<div>
-            <img src="${publicUrl}" style="width:70%;height:70%"></img>
-        </div>
+        `
+        <body style="background:black;color:white">
         <div>
+            <img src="${publicUrl}" style="width:70%;height:70%"></img>
             ${x}
-        </div>` ;
+        </div>
+        <div >
+          
+        </div>
+        </body>` ;
         res.status(200).write(htmlContent);
         res.end();
      }).catch((error) => {
