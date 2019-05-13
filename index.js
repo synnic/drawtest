@@ -14,8 +14,8 @@ function draw() {
 
     if (mouseIsPressed) {
         const point = {
-            x: mouseX,
-            y: mouseY,
+            x: coorX,
+            y: coorY,
             color: colorInput.value,
             weight: weight.value
         };

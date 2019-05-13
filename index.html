@@ -34,3 +34,26 @@
 </html>
 
 
+<script>
+    var coordX = 0;
+    var coordY = 0;
+     
+    window.onmousemove = coordHandler;
+    window.ontouchstart = coordHandler;
+    window.ontouchmove = coordHandler;
+     
+    function coordHandler(event) {
+        switch (event.type) {
+            case 'mousemove':
+                coordX = event.clientX;
+                coordY = event.clientY;
+                break;
+            case 'touchstart':
+            case 'touchmove':
+                var firstTouch = event.touches[0];
+                coordX = firstTouch.clientX;
+                coordY = firstTouch.clientY;
+                break;
+        }
+    }
+    </script>
