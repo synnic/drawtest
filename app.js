@@ -3,7 +3,6 @@ var bodyParser = require('body-parser');
 const { Storage } = require('@google-cloud/storage');
 const vision = require('@google-cloud/vision');
 const automl = require(`@google-cloud/automl`).v1beta1;
-
 const CLOUD_BUCKET = process.env.GCLOUD_STORAGE_BUCKET || 'pigturechallenge.appspot.com';
 const PROJECT_ID = process.env.PROJECT_ID || 'pigturechallenge';
 const KEY_FILE = process.env.GCLOUD_KEY_FILE || 'pigturechallenge-9ae039f98d06.json';

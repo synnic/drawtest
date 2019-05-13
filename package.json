@@ -13,7 +13,8 @@
     "formidable": "^1.2.1",
     "html2canvas": "^1.0.0-rc.1",
     "multer": "^1.4.1",
-    "p5": "^0.8.0"
+    "p5": "^0.8.0",
+    "trim-canvas": "^0.1.2"
   },
   "devDependencies": {},
   "scripts": {

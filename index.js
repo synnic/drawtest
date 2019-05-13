@@ -3,21 +3,27 @@ const weight = document.getElementById('weight');
 const clear = document.getElementById('clear');
 const paths = [];
 let currentPath = [];
+var coordX = 0;
+var coordY = 0;
 
 function setup() {
     createCanvas(window.innerWidth, window.innerHeight);
-    background(255);
+    background(0);
 }
 
 function draw() {
     noFill();
 
+    window.onmousemove = coordHandler;
+    window.ontouchstart = coordHandler;
+    window.ontouchmove = coordHandler;
+ 
     if (mouseIsPressed) {
         const point = {
-            x: coorX,
-            y: coorY,
-            color: colorInput.value,
-            weight: weight.value
+            x: coordX,
+            y: coordY,
+            color: "#ff00ff",
+            weight: 5
         };
         currentPath.push(point);
     }
@@ -48,8 +54,27 @@ var saveButton = document.querySelector('#saveAs');
 saveButton.addEventListener('click',function(e){
     //e.preventDefault();
     canvasElm = document.querySelector("#defaultCanvas0");
+    canvasElm = trimCanvas(canvasElm);
     var imageType = 'image/png';
     var imageData = canvasElm.toDataURL(imageType); 
     document.querySelector("#imageURL").value = imageData;
     }
 );
+
+
+ 
+
+function coordHandler(event) {
+    switch (event.type) {
+        case 'mousemove':
+            coordX = event.clientX;
+            coordY = event.clientY;
+            break;
+        case 'touchstart':
+        case 'touchmove':
+            var firstTouch = event.touches[0];
+            coordX = firstTouch.clientX;
+            coordY = firstTouch.clientY;
+            break;
+    }
+}
