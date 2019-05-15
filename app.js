@@ -82,7 +82,11 @@ async function checkVision(ImagePublicURL) {
     }
     console.log(resultString);
   });
-  if (!resultString.includes("Pig"))
+  if (resultString == '<ul>')
+  {
+    resultString = resultString + `Maybe an unknown creature?`;
+  }
+  else if (!resultString.includes("Pig"))
   {
     resultString = resultString + `<li>Pig -` + ` ${Number(Math.random() * (70 - 60) + 60).toFixed(2)}%</li>`;
   }
@@ -154,13 +158,20 @@ app.post("/", function(req, res) {
      checkVision(publicUrl).then(x=>{
         var htmlContent = 
         `
-        <body style="background:black;color:white">
+        <body style="background:white">
         <div>
             <img src="${publicUrl}" style="width:70%;height:70%"></img>
-            ${x}
         </div>
-        <div >
-          
+        <div style="text-align:left;font-family:calibri;position:relative">
+        <img src="dialogbox.png" style="height:718px">
+        <span style="font-size:65px;color:black;position:absolute;left:194px;top:194px">I Guess you are drawing...</span>
+        <span style="font-size:50px;color:black;position:absolute;left:194px;top:223px">${x}</span>
+        </img>
+      
+        </div>
+        <div style="text-align:right">
+        <img src="kbcloud.png" style="height:122px"></img>
+        <img src="gcp.png" style="height:98px"></img>
         </div>
         </body>` ;
         res.status(200).write(htmlContent);

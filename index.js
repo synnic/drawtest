@@ -5,10 +5,10 @@ const paths = [];
 let currentPath = [];
 var coordX = 0;
 var coordY = 0;
-var currentColor = "#ff00ff";
+var currentColor = "#ffb3b3";
 function setup() {
     createCanvas(window.innerWidth, window.innerHeight);
-    background(0);
+    background(255);
 }
 
 function draw() {
@@ -46,7 +46,7 @@ function mousePressed() {
 
 clear.addEventListener('click', () => {
     paths.splice(0);
-    background(0);
+    background(255);
 });
 
 var saveButton = document.querySelector('#saveAs');
@@ -63,7 +63,7 @@ saveButton.addEventListener('click',function(e){
     // set to draw behind current content
     context.globalCompositeOperation = "destination-over";
     //set background color
-    context.fillStyle = "#FFFFFF";
+    context.fillStyle = "#000000";
     // draw background/rectangle on entire canvas
     context.fillRect(0,0,canvas[0].width,canvas[0].height);
 
