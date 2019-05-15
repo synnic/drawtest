@@ -164,8 +164,8 @@ app.post("/", function(req, res) {
         </div>
         <div style="text-align:left;font-family:calibri;position:relative">
         <img src="dialogbox.png" style="height:35%">
-        <span style="font-size:20px;color:black;position:absolute;left:41px;top:49px">I Guess you are drawing...</span>
-        <span style="font-size:19px;color:black;position:absolute;left:21px;top:56px">${x}</span>
+        <span style="font-size:20px;color:black;position:absolute;left:51px;top:64px">I Guess you are drawing...</span>
+        <span style="font-size:19px;color:black;position:absolute;left:31px;top:71px">${x}</span>
         </img>
       
         </div>
