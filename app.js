@@ -162,7 +162,7 @@ app.post("/", function(req, res) {
         <div>
             <img src="${publicUrl}" style="width:60%;height:60%"></img>
         </div>
-        <div style="text-align:left;font-family:calibri;position:relative">
+        <div style="text-align:left;font-family:Comic Sans MS;position:relative">
         <img src="dialogbox.png" style="height:35%">
         <span style="font-size:20px;color:black;position:absolute;left:51px;top:64px">I Guess you are drawing...</span>
         <span style="font-size:19px;color:black;position:absolute;left:31px;top:71px">${x}</span>
