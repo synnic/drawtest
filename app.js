@@ -74,7 +74,7 @@ async function checkVision(ImagePublicURL) {
     //console.log(`Confidence: ${object.score}`);
     if (object.name == "Animal")
     {
-      resultString = resultString + `<li>Pig -` + ` ${(Number(object.score).toFixed(4)*100).toFixed(2)}%</li>`;
+      resultString = resultString + `<li><b>Pig -` + ` ${(Number(object.score).toFixed(4)*100).toFixed(2)}%</b></li>`;
     }
     else
     {
@@ -88,7 +88,7 @@ async function checkVision(ImagePublicURL) {
   }
   else if (!resultString.includes("Pig"))
   {
-    resultString = resultString + `<li>Pig -` + ` ${Number(Math.random() * (70 - 60) + 60).toFixed(2)}%</li>`;
+    resultString = resultString + `<li><b>Pig -` + ` ${Number(Math.random() * (70 - 60) + 60).toFixed(2)}%</b></li>`;
   }
   resultString = resultString + "</ul>";
   return resultString;
@@ -160,18 +160,18 @@ app.post("/", function(req, res) {
         `
         <body style="background:white">
         <div>
-            <img src="${publicUrl}" style="width:70%;height:70%"></img>
+            <img src="${publicUrl}" style="width:59%;height:59%"></img>
         </div>
         <div style="text-align:left;font-family:calibri;position:relative">
-        <img src="dialogbox.png" style="height:718px">
-        <span style="font-size:65px;color:black;position:absolute;left:194px;top:194px">I Guess you are drawing...</span>
-        <span style="font-size:50px;color:black;position:absolute;left:194px;top:223px">${x}</span>
+        <img src="dialogbox.png" style="height:35%">
+        <span style="font-size:36px;color:black;position:absolute;left:76px;top:91px">I Guess you are drawing...</span>
+        <span style="font-size:30px;color:black;position:absolute;left:76px;top:107px">${x}</span>
         </img>
       
         </div>
         <div style="text-align:right">
-        <img src="kbcloud.png" style="height:122px"></img>
-        <img src="gcp.png" style="height:98px"></img>
+        <img src="kbcloud.png" style="height:6%"></img>
+        <img src="gcp.png" style="height:5%"></img>
         </div>
         </body>` ;
         res.status(200).write(htmlContent);
