@@ -160,17 +160,16 @@ app.post("/", function(req, res) {
         `
         <body style="background:white">
         <div>
-            <img src="${publicUrl}" style="width:59%;height:59%"></img>
+            <img src="${publicUrl}" style="width:60%;height:60%"></img>
         </div>
         <div style="text-align:left;font-family:calibri;position:relative">
         <img src="dialogbox.png" style="height:35%">
-        <span style="font-size:36px;color:black;position:absolute;left:76px;top:91px">I Guess you are drawing...</span>
-        <span style="font-size:30px;color:black;position:absolute;left:76px;top:107px">${x}</span>
+        <span style="font-size:20px;color:black;position:absolute;left:41px;top:49px">I Guess you are drawing...</span>
+        <span style="font-size:19px;color:black;position:absolute;left:21px;top:56px">${x}</span>
         </img>
       
         </div>
         <div style="text-align:right">
-        <img src="kbcloud.png" style="height:6%"></img>
         <img src="gcp.png" style="height:5%"></img>
         </div>
         </body>` ;
