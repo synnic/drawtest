@@ -167,11 +167,9 @@ app.post("/", function(req, res) {
         <span style="font-size:20px;color:black;position:absolute;left:51px;top:64px">I Guess you are drawing...</span>
         <span style="font-size:19px;color:black;position:absolute;left:31px;top:71px">${x}</span>
         </img>
-      
+        <img src="gxk-wbg.png" style="height:27%;right:0px;bottom:0px;position:absolute"></img>
         </div>
-        <div style="text-align:right">
-        <img src="gxk-wbg.png" style="height:5%"></img>
-        </div>
+
         </body>` ;
         res.status(200).write(htmlContent);
         res.end();
