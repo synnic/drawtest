@@ -170,7 +170,7 @@ app.post("/", function(req, res) {
       
         </div>
         <div style="text-align:right">
-        <img src="gcp.png" style="height:5%"></img>
+        <img src="gxk-wbg.png" style="height:5%"></img>
         </div>
         </body>` ;
         res.status(200).write(htmlContent);
